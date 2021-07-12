@@ -9,7 +9,11 @@ export function Menu() {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())} style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+      style={styles.container}
+      activeOpacity={0.8}
+    >
       <Feather name="menu" size={40} color={theme.colors.text} />
     </TouchableOpacity>
   );
