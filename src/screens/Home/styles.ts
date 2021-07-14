@@ -62,6 +62,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 7,
     borderBottomRightRadius: 7,
     fontSize: 17,
+    color: theme.colors.text,
   },
   containerButton: {
     alignItems: 'center',
