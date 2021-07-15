@@ -21,13 +21,25 @@ import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 import logo from '../../assets/logo.png'
 import { TextInput } from 'react-native-gesture-handler';
+import { api } from '../../services/api';
 
 export function Home() {
   const [input, setInput] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
-  function handleShortLink() {
-    setModalVisible(true);
+  async function handleShortLink() {
+    // setModalVisible(true);
+    try {
+      const response = await api.post('/shorten',
+        {
+          long_url: input
+        });
+      console.log(response.data);
+    } catch {
+      alert('Parece que algo deu errado!');
+      Keyboard.dismiss();
+      setInput('');
+    }
   }
 
   function handleCloseModal() {
