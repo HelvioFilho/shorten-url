@@ -12,21 +12,27 @@ import * as Clipboard from 'expo-clipboard';
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 
-type Props = {
-  onClose: () => void;
+export type ItemLink = {
+  link: string;
+  long_url: string;
 }
 
-export function ModalLink({ onClose }: Props) {
+type Props = {
+  onClose: () => void;
+  data: ItemLink;
+}
+
+export function ModalLink({ onClose, data }: Props) {
 
   function copyLink() {
-    Clipboard.setString('https://meulink.com.br');
+    Clipboard.setString(data.link);
     alert('Link copiado com sucesso!');
   }
 
   async function handleShare() {
     try {
       await Share.share({
-        message: `Link: https://meulink.com.br`
+        message: `Link: ${data.link}`
       });
 
     } catch (error) {
@@ -69,7 +75,7 @@ export function ModalLink({ onClose }: Props) {
             style={styles.longUrl}
             numberOfLines={1}
           >
-            https://hsvf.com.br
+            {data.long_url}
           </Text>
           <TouchableOpacity
             style={styles.containerShort}
@@ -80,7 +86,7 @@ export function ModalLink({ onClose }: Props) {
               style={styles.shortUrl}
               numberOfLines={1}
             >
-              https://bit.ly/ao2dko
+              {data.link}
             </Text>
             <TouchableOpacity
               activeOpacity={0.9}

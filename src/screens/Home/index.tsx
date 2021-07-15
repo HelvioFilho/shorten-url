@@ -8,14 +8,15 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  Modal
+  Modal,
+  ActivityIndicator
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBarPage } from '../../components/StatusBarPage';
 import { Feather } from '@expo/vector-icons';
 
 import { Menu } from '../../components/Menu';
-import { ModalLink } from '../../components/ModalLink';
+import { ItemLink, ModalLink } from '../../components/ModalLink';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
@@ -24,21 +25,30 @@ import { TextInput } from 'react-native-gesture-handler';
 import { api } from '../../services/api';
 
 export function Home() {
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [data, setData] = useState<ItemLink>({} as ItemLink);
+
+  function endLink() {
+    Keyboard.dismiss();
+    setLoading(false);
+    setInput('');
+  }
 
   async function handleShortLink() {
-    // setModalVisible(true);
+    setLoading(true);
     try {
       const response = await api.post('/shorten',
         {
           long_url: input
         });
-      console.log(response.data);
+      setData(response.data);
+      setModalVisible(true);
+      endLink();
     } catch {
       alert('Parece que algo deu errado!');
-      Keyboard.dismiss();
-      setInput('');
+      endLink();
     }
   }
 
@@ -94,14 +104,20 @@ export function Home() {
               activeOpacity={0.8}
               onPress={handleShortLink}
             >
-              <Text style={styles.buttonText}>
-                Gerar link
-              </Text>
+              {
+                loading ? (
+                  <ActivityIndicator color={theme.colors.loading} size={24} />
+                ) : (
+                  <Text style={styles.buttonText}>
+                    Gerar link
+                  </Text>
+                )
+              }
             </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
         <Modal visible={modalVisible} transparent animationType="slide" >
-          <ModalLink onClose={handleCloseModal} ></ModalLink>
+          <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
         </Modal>
       </LinearGradient>
     </TouchableWithoutFeedback>
