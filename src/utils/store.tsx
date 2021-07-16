@@ -37,9 +37,7 @@ export async function saveLink(link: ItemLink): Promise<void> {
 
     const findLink = Object.keys(oldLinks).some(old => old === link.id);
 
-    if (findLink) {
-      console.log("Link já existe na lista");
-    } else {
+    if (!findLink) {
       const newLinks = {
         [link.id]: {
           data: link,
@@ -52,7 +50,6 @@ export async function saveLink(link: ItemLink): Promise<void> {
           ...oldLinks
         })
       );
-      console.log('salvo com sucesso!');
     }
   } catch (error) {
     throw new Error(error);
@@ -68,7 +65,6 @@ export async function deleteLink(id: string) {
       '@shorterUrl:links',
       JSON.stringify(links)
     );
-    console.log('link deletado com sucesso!');
   } catch (error) {
     throw new Error(error);
   }
