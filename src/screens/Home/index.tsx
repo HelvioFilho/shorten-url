@@ -16,13 +16,14 @@ import { StatusBarPage } from '../../components/StatusBarPage';
 import { Feather } from '@expo/vector-icons';
 
 import { Menu } from '../../components/Menu';
-import { ItemLink, ModalLink } from '../../components/ModalLink';
+import { ModalLink } from '../../components/ModalLink';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 import logo from '../../assets/logo.png'
 import { TextInput } from 'react-native-gesture-handler';
 import { api } from '../../services/api';
+import { ItemLink, saveLink } from '../../utils/store';
 
 export function Home() {
   const [loading, setLoading] = useState(false);
@@ -45,10 +46,14 @@ export function Home() {
         });
       setData(response.data);
       setModalVisible(true);
+
+      saveLink(response.data);
+
       endLink();
     } catch {
       alert('Parece que algo deu errado!');
       endLink();
+      saveLink(data);
     }
   }
 
