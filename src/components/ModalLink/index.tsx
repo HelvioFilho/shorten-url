@@ -11,11 +11,7 @@ import * as Clipboard from 'expo-clipboard';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
-
-export type ItemLink = {
-  link: string;
-  long_url: string;
-}
+import { ItemLink } from '../../utils/store';
 
 type Props = {
   onClose: () => void;
