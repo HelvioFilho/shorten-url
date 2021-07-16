@@ -13,4 +13,13 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     color: theme.colors.text,
   },
+  empty: {
+    marginTop: '15%',
+    alignItems: 'center',
+  },
+  warning: {
+    fontFamily: theme.fonts.text400,
+    fontSize: 18,
+    color: theme.colors.text,
+  }
 });

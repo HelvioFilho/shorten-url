@@ -20,4 +20,13 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 20,
   },
+  actionContainer: {
+    width: '15%',
+    backgroundColor: theme.colors.trash,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 7,
+    marginHorizontal: 10,
+  },
 });
