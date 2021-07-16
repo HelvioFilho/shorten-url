@@ -39,10 +39,16 @@ export function Home() {
 
   async function handleShortLink() {
     setLoading(true);
+    let link;
+    if (input.includes('http://') || input.includes('https://')) {
+      link = input;
+    } else {
+      link = `http://${input}`;
+    }
     try {
       const response = await api.post('/shorten',
         {
-          long_url: input
+          long_url: link
         });
       setData(response.data);
       setModalVisible(true);
