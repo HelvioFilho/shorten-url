@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Shorten Url" title="ShortenUrl" src=".github/logo.png" />
+    <img alt="Shorten Url" title="ShortenUrl" src=".github/logo.svg" />
 </h1>
 
 <p align="center">
