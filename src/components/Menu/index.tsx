@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Touchable, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
@@ -12,7 +12,7 @@ export function Menu() {
     <TouchableOpacity
       onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
       style={styles.container}
-      activeOpacity={0.8}
+      activeOpacity={0.1}
     >
       <Feather name="menu" size={40} color={theme.colors.text} />
     </TouchableOpacity>

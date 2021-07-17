@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.colors.input,
     borderTopRightRadius: 7,
     borderBottomRightRadius: 7,
-    fontSize: 17,
+    fontSize: 16,
     color: theme.colors.text,
   },
   containerButton: {

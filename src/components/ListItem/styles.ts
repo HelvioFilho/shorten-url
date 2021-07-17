@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   containerButton: {
     flexDirection: 'row',
     backgroundColor: theme.colors.input,
-    marginVertical: 7,
+    marginVertical: 5,
     marginHorizontal: 10,
     padding: 12,
     borderRadius: 7,

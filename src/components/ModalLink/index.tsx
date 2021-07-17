@@ -4,10 +4,12 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Share
+  Share,
+  Alert
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
+import * as WebBrowser from 'expo-web-browser';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
@@ -22,7 +24,16 @@ export function ModalLink({ onClose, data }: Props) {
 
   function copyLink() {
     Clipboard.setString(data.link);
-    alert('Link copiado com sucesso!');
+    Alert.alert(
+      'Aviso',
+      'Link copiado com sucesso!',
+      [
+        {
+          text: 'ok',
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   async function handleShare() {
@@ -35,6 +46,11 @@ export function ModalLink({ onClose, data }: Props) {
       console.log(error.message);
     }
   }
+
+  async function handleOpenBrowser(link: string) {
+    await WebBrowser.openBrowserAsync(link);
+  }
+
   return (
     <View style={styles.containerModal}>
       <TouchableWithoutFeedback onPress={onClose}>
@@ -94,6 +110,13 @@ export function ModalLink({ onClose, data }: Props) {
                 size={25}
               />
             </TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.8}
+            onPress={() => handleOpenBrowser(data.link)}
+          >
+            <Text style={styles.buttonText}>Abrir no Navegador</Text>
           </TouchableOpacity>
         </View>
       </View>

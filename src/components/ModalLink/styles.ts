@@ -50,4 +50,19 @@ export const styles = StyleSheet.create({
     width: '90%',
     color: theme.colors.text,
   },
+  button: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '60%',
+    height: 45,
+    backgroundColor: theme.colors.title,
+    marginVertical: 10,
+    borderRadius: 7,
+  },
+  buttonText: {
+    fontFamily: theme.fonts.text400,
+    fontSize: 18,
+    color: theme.colors.text,
+  },
 });

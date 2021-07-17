@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Modal, ActivityIndicator } from 'react-native';
+import { View, Text, Modal, ActivityIndicator, Platform } from 'react-native';
 import { FlatList, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 
@@ -46,50 +46,62 @@ export function MyLinks() {
   }, [isFocused]);
 
   return (
-
-    <View style={styles.container}>
-      <TouchableWithoutFeedback>
-        <StatusBarPage
-          color={theme.colors.background100}
-          barStyle="light-content"
-        />
+    <>
+      {
+        Platform.OS === 'ios'
+        &&
         <Menu />
-        <Text style={styles.title}>Meus Links</Text>
-        {
-          loading && (
-            <View style={styles.empty}>
-              <ActivityIndicator color={theme.colors.text} size={25} />
-            </View>
-          )
-        }
-        {
-          !loading && links.length === 0
-          && (
-            <View style={styles.empty}>
-              <Text style={styles.warning}>
-                Você ainda não possuí nenhum link 😕
-              </Text>
-            </View>
-          )
-        }
-        <FlatList
-          data={links}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) =>
-            <ListItem
-              data={item}
-              selectedItem={handleItem}
-              deleteItem={deleteItem}
-            />
+      }
+
+      <View style={styles.container}>
+        <TouchableWithoutFeedback>
+          <StatusBarPage
+            color={theme.colors.background100}
+            barStyle="light-content"
+          />
+          {
+            Platform.OS === 'android'
+            &&
+            <Menu />
           }
-          contentContainerStyle={{ paddingBottom: 22 }}
-          showsVerticalScrollIndicator={false}
-        />
-        <Modal visible={modalVisible} transparent animationType="slide" >
-          <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
-        </Modal>
-      </TouchableWithoutFeedback>
-    </View>
+          <Text style={styles.title}>Meus Links</Text>
+
+          {
+            loading && (
+              <View style={styles.empty}>
+                <ActivityIndicator color={theme.colors.text} size={25} />
+              </View>
+            )
+          }
+          {
+            !loading && links.length === 0
+            && (
+              <View style={styles.empty}>
+                <Text style={styles.warning}>
+                  Você ainda não possuí nenhum link 😕
+                </Text>
+              </View>
+            )
+          }
+          <FlatList
+            data={links}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) =>
+              <ListItem
+                data={item}
+                selectedItem={handleItem}
+                deleteItem={deleteItem}
+              />
+            }
+            contentContainerStyle={{ paddingBottom: 22, paddingTop: 10 }}
+            showsVerticalScrollIndicator={false}
+          />
+          <Modal visible={modalVisible} transparent animationType="slide" >
+            <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
+          </Modal>
+        </TouchableWithoutFeedback>
+      </View>
+    </>
 
   );
 }

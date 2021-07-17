@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: theme.fonts.title700,
     fontSize: 33,
-    marginTop: Platform.OS === 'ios' ? '35%' : '20%',
+    marginTop: Platform.OS === 'ios' ? '35%' : '30%',
     marginLeft: 20,
     color: theme.colors.text,
   },

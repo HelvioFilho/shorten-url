@@ -57,7 +57,7 @@ export function Home() {
 
       endLink();
     } catch {
-      alert('Parece que algo deu errado!');
+      alert('Entre com um link válido!');
       endLink();
       saveLink(data);
     }
