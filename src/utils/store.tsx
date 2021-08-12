@@ -1,16 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-export type ItemLink = {
-  id: string;
-  link: string;
-  long_url: string;
-}
-
-export type StorageLink = {
-  [id: string]: {
-    data: ItemLink;
-  }
-}
+import { ItemLink, StorageLink } from './interface';
 
 export async function getLinksSave(): Promise<ItemLink[]> {
   try {

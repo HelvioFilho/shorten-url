@@ -1,20 +1,18 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { styles } from './styles';
-import { theme } from '../../global/styles/theme';
+import { ContainerMenu } from './styles';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
+import { defaultTheme } from '../../../global/styles/theme';
 
 export function Menu() {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity
+    <ContainerMenu
       onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-      style={styles.container}
       activeOpacity={0.1}
     >
-      <Feather name="menu" size={40} color={theme.colors.text} />
-    </TouchableOpacity>
+      <Feather name="menu" size={40} color={defaultTheme.colors.text} />
+    </ContainerMenu>
   );
 }

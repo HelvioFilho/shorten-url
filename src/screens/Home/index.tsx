@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import {
-  View,
-  Image,
-  Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
   KeyboardAvoidingView,
@@ -11,19 +7,15 @@ import {
   Modal,
   ActivityIndicator
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBarPage } from '../../components/StatusBarPage';
 import { Feather } from '@expo/vector-icons';
 
-import { Menu } from '../../components/Menu';
-import { ModalLink } from '../../components/ModalLink';
-
-import { styles } from './styles';
-import { theme } from '../../global/styles/theme';
+import { BoxIcon, ButtonAll, ContainerGradient, ImageLogo, Input } from './styles';
 import logo from '../../assets/logo.png'
-import { TextInput } from 'react-native-gesture-handler';
 import { api } from '../../services/api';
-import { ItemLink, saveLink } from '../../utils/store';
+import { saveLink } from '../../utils/store';
+import { defaultTheme } from '../../global/styles/theme';
+import { Container, CustomText, Menu, ModalLink, StatusBarPage } from '../../components';
+import { ItemLink } from '../../utils/interface';
 
 export function Home() {
   const [loading, setLoading] = useState(false);
@@ -59,7 +51,6 @@ export function Home() {
     } catch {
       alert('Entre com um link válido!');
       endLink();
-      saveLink(data);
     }
   }
 
@@ -69,12 +60,11 @@ export function Home() {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <LinearGradient
-        colors={[theme.colors.background20, theme.colors.background100]}
-        style={styles.container}
+      <ContainerGradient
+        colors={[defaultTheme.colors.background20, defaultTheme.colors.background100]}
       >
         <StatusBarPage
-          color={theme.colors.background20}
+          color={defaultTheme.colors.background20}
           barStyle="light-content"
         />
         <Menu />
@@ -82,55 +72,86 @@ export function Home() {
           behavior={Platform.OS === 'android' ? 'padding' : 'position'}
           enabled
         >
-          <View style={styles.logoView}>
-            <Image
-              style={styles.image}
+          <Container
+            alignItems="center"
+            marginTop={20}
+            marginBottom={30}
+          >
+            <ImageLogo
               source={logo}
               resizeMode="contain" />
-          </View>
-          <View style={styles.containerText}>
-            <Text style={styles.title}>Encurtador de Link</Text>
-            <Text style={styles.subtitle}>Cole seu link abaixo para encurtar</Text>
-            <View style={styles.containerInput}>
-              <View style={styles.boxIcon}>
+          </Container>
+          <Container
+            marginTop={40}
+          >
+            <CustomText
+              fontFamily="title700"
+              fontSize={34}
+              color="text"
+              textAlign="center"
+            >
+              Encurtador de Link
+            </CustomText>
+            <CustomText
+              fontFamily="text400"
+              fontSize={16}
+              color="text"
+              textAlign="center"
+              paddingBottom={30}
+            >
+              Cole seu link abaixo para encurtar
+            </CustomText>
+            <Container
+              flex={1}
+              flexDirection="row"
+              alignItems="center"
+              widthPercent={100}
+              borderRadius={7}
+              marginTop={25}
+              marginBottom={15}
+              paddingLeft={25}
+              paddingRight={25}
+            >
+              <BoxIcon>
                 <Feather
                   name="link"
                   size={22}
-                  color={theme.colors.text}
+                  color={defaultTheme.colors.text}
                 />
-              </View>
-              <TextInput
+              </BoxIcon>
+              <Input
                 placeholder="Cole seu link aqui..."
-                placeholderTextColor={theme.colors.text}
-                style={styles.input}
+                placeholderTextColor={defaultTheme.colors.text}
                 autoCapitalize="none"
                 autoCorrect={false}
                 keyboardType="url"
                 value={input}
                 onChangeText={setInput}
               />
-            </View>
-            <TouchableOpacity
-              style={styles.containerButton}
+            </Container>
+            <ButtonAll
               activeOpacity={0.8}
               onPress={handleShortLink}
             >
               {
                 loading ? (
-                  <ActivityIndicator color={theme.colors.loading} size={24} />
+                  <ActivityIndicator color={defaultTheme.colors.loading} size={24} />
                 ) : (
-                  <Text style={styles.buttonText}>
+                  <CustomText
+                    fontFamily="text400"
+                    fontSize={18}
+                  >
                     Gerar link
-                  </Text>
+                  </CustomText>
                 )
               }
-            </TouchableOpacity>
-          </View>
+            </ButtonAll>
+          </Container>
         </KeyboardAvoidingView>
         <Modal visible={modalVisible} transparent animationType="slide" >
           <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
         </Modal>
-      </LinearGradient>
+      </ContainerGradient>
     </TouchableWithoutFeedback>
   );
 }

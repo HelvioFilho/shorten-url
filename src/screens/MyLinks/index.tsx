@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Modal, ActivityIndicator, Platform } from 'react-native';
+import { Modal, ActivityIndicator, Platform } from 'react-native';
 import { FlatList, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 
-import { ListItem } from '../../components/ListItem';
-import { Menu } from '../../components/Menu';
-import { StatusBarPage } from '../../components/StatusBarPage';
+import { Container, CustomText, ListItem, Menu, ModalLink, StatusBarPage } from '../../components';
 
-import { deleteLink, getLinksSave, ItemLink, StorageLink } from '../../utils/store';
-
-import { theme } from '../../global/styles/theme';
-import { styles } from './styles';
-import { ModalLink } from '../../components/ModalLink';
+import { deleteLink, getLinksSave } from '../../utils/store';
+import { defaultTheme } from '../../global/styles/theme';
+import { ItemLink } from '../../utils/interface';
 
 export function MyLinks() {
   const isFocused = useIsFocused();
-
   const [links, setLinks] = useState<ItemLink[]>([]);
   const [data, setData] = useState<ItemLink>({} as ItemLink);
   const [modalVisible, setModalVisible] = useState(false);
@@ -52,11 +47,13 @@ export function MyLinks() {
         &&
         <Menu />
       }
-
-      <View style={styles.container}>
+      <Container
+        flex={1}
+        backgroundColor="background100"
+      >
         <TouchableWithoutFeedback>
           <StatusBarPage
-            color={theme.colors.background100}
+            color={defaultTheme.colors.background100}
             barStyle="light-content"
           />
           {
@@ -64,23 +61,40 @@ export function MyLinks() {
             &&
             <Menu />
           }
-          <Text style={styles.title}>Meus Links</Text>
-
+          <CustomText
+            fontFamily="title700"
+            fontSize={33}
+            marginTop={100}
+            marginLeft={20}
+            color="text"
+          >
+            Meus Links
+          </CustomText>
           {
             loading && (
-              <View style={styles.empty}>
-                <ActivityIndicator color={theme.colors.text} size={25} />
-              </View>
+              <Container
+                alignItems="center"
+                marginTop={15}
+              >
+                <ActivityIndicator color={defaultTheme.colors.text} size={25} />
+              </Container>
             )
           }
           {
             !loading && links.length === 0
             && (
-              <View style={styles.empty}>
-                <Text style={styles.warning}>
+              <Container
+                alignItems="center"
+                marginTop={15}
+              >
+                <CustomText
+                  fontFamily="text400"
+                  fontSize={18}
+                  color="text"
+                >
                   Você ainda não possuí nenhum link 😕
-                </Text>
-              </View>
+                </CustomText>
+              </Container>
             )
           }
           <FlatList
@@ -100,8 +114,7 @@ export function MyLinks() {
             <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
           </Modal>
         </TouchableWithoutFeedback>
-      </View>
+      </Container>
     </>
-
   );
 }

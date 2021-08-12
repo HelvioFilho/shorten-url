@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { Home } from '../screens/Home';
 import { MyLinks } from '../screens/MyLinks';
-import { theme } from '../global/styles/theme';
+import { defaultTheme } from '../global/styles/theme';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -13,8 +13,8 @@ export function AppRoutes() {
   return (
     <Navigator
       drawerContentOptions={{
-        activeBackgroundColor: theme.colors.blue40,
-        activeTintColor: theme.colors.white,
+        activeBackgroundColor: defaultTheme.colors.background40,
+        activeTintColor: defaultTheme.colors.text,
         labelStyle: {
           fontSize: 19,
         }

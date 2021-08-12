@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-import { styles } from './styles';
-import { theme } from '../../global/styles/theme';
-import { ItemLink } from '../../utils/store';
+import { ActionContainer, ContainerLink } from './styles';
+import { ItemLink } from '../../../utils/store';
+import { defaultTheme } from '../../../global/styles/theme';
+import { CustomText } from '../../atoms';
+
 
 type Props = {
   data: ItemLink;
@@ -16,34 +18,42 @@ type Props = {
 export function ListItem({ data, selectedItem, deleteItem }: Props) {
   function RightActions() {
     return (
-      <TouchableOpacity
-        style={styles.actionContainer}
+      <ActionContainer
+        activeOpacity={0.9}
         onPress={() => deleteItem(data.id)}
       >
         <Feather
           name="trash"
-          color={theme.colors.text}
+          color={defaultTheme.colors.text}
           size={24}
         />
-      </TouchableOpacity>
+      </ActionContainer>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <View>
       <Swipeable renderRightActions={RightActions}>
-        <TouchableOpacity
+        <ContainerLink
           activeOpacity={0.9}
-          style={styles.containerButton}
           onPress={() => selectedItem(data)}
         >
           <Feather
             name="link"
-            color={theme.colors.text}
+            color={defaultTheme.colors.text}
             size={24}
           />
-          <Text numberOfLines={1} style={styles.item}>{data.long_url}</Text>
-        </TouchableOpacity>
+          <CustomText
+            numberOfLines={1}
+            fontFamily="text400"
+            fontSize={18}
+            color="text"
+            paddingLeft={10}
+            paddingRight={20}
+          >
+            {data.long_url}
+          </CustomText>
+        </ContainerLink>
       </Swipeable>
     </View>
   );
