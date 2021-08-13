@@ -25,7 +25,6 @@ export function AlertModal({ alertText }: AlertModalProps) {
           widthPercent={100}
           justifyContent="center"
         >
-          <Container />
           <CustomText
             fontFamily="text400"
             fontSize={20}

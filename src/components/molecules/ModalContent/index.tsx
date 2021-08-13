@@ -3,11 +3,12 @@ import { Modal, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import * as WebBrowser from 'expo-web-browser';
 import { Feather } from '@expo/vector-icons';
-import { defaultTheme } from '../../../global/styles/theme';
 import { Container, CustomText } from '../../atoms';
-import { ContainerShort, LinkButton } from './styles';
 import { ModalProps } from '../../../utils/interface';
 import { AlertModal } from '../AlertModal';
+
+import { ContainerShort, LinkButton } from './styles';
+import { defaultTheme } from '../../../global/styles/theme';
 
 export function ModalContent({ data }: ModalProps) {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -87,7 +88,13 @@ export function ModalContent({ data }: ModalProps) {
           Abrir no Navegador
         </CustomText>
       </LinkButton>
-      <Modal visible={alertVisible} transparent animationType="fade" onShow={handleCloseAlert} >
+      <Modal
+        visible={alertVisible}
+        transparent
+        animationType="fade"
+        onShow={handleCloseAlert}
+        statusBarTranslucent={true}
+      >
         <AlertModal alertText={alertText} />
       </Modal>
     </Container>

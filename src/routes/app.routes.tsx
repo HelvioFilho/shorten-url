@@ -1,6 +1,5 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
 import { Home } from '../screens/Home';
 import { MyLinks } from '../screens/MyLinks';
 import { defaultTheme } from '../global/styles/theme';

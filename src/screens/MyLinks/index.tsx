@@ -63,7 +63,7 @@ export function MyLinks() {
           <CustomText
             fontFamily="title700"
             fontSize={33}
-            marginTop={100}
+            marginTop={Platform.OS === 'android' ? 100 : 140}
             marginLeft={20}
             color="text"
           >

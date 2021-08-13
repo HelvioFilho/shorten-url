@@ -154,10 +154,23 @@ export function Home() {
             </ButtonAll>
           </Container>
         </KeyboardAvoidingView>
-        <Modal visible={modalVisible} transparent animationType="slide" >
-          <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
+        <Modal
+          visible={modalVisible}
+          transparent
+          animationType="slide"
+        >
+          <ModalLink
+            onClose={handleCloseModal}
+            data={data}
+          />
         </Modal>
-        <Modal visible={alertVisible} transparent animationType="fade" onShow={handleCloseAlert} >
+        <Modal
+          visible={alertVisible}
+          transparent
+          animationType="fade"
+          onShow={handleCloseAlert}
+          statusBarTranslucent={true}
+        >
           <AlertModal alertText={alertText} />
         </Modal>
       </ContainerGradient>

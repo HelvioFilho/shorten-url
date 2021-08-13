@@ -2,19 +2,13 @@ import React from 'react';
 import { View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { CustomText } from '../../atoms';
 
 import { defaultTheme } from '../../../global/styles/theme';
 import { ActionContainer, ContainerLink } from './styles';
-import { CustomText } from '../../atoms';
-import { ItemLink } from '../../../utils/interface';
+import { ListItemProps } from '../../../utils/interface';
 
-type Props = {
-  data: ItemLink;
-  selectedItem: (item: ItemLink) => void;
-  deleteItem: (item: string) => void;
-}
-
-export function ListItem({ data, selectedItem, deleteItem }: Props) {
+export function ListItem({ data, selectedItem, deleteItem }: ListItemProps) {
   function RightActions() {
     return (
       <ActionContainer

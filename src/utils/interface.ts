@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { StatusBarProps } from "react-native";
 import { colors } from "../global/styles/colors";
 import { fonts } from "../global/styles/fonts";
 
@@ -47,6 +48,16 @@ export interface StorageLink {
   [id: string]: {
     data: ItemLink;
   }
+}
+
+export interface CustomStatusBarProps extends StatusBarProps {
+  color: string;
+}
+
+export interface ListItemProps {
+  data: ItemLink;
+  selectedItem: (item: ItemLink) => void;
+  deleteItem: (item: string) => void;
 }
 
 export interface ModalProps {
