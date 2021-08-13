@@ -14,14 +14,16 @@ import logo from '../../assets/logo.png'
 import { api } from '../../services/api';
 import { saveLink } from '../../utils/store';
 import { defaultTheme } from '../../global/styles/theme';
-import { Container, CustomText, Menu, ModalLink, StatusBarPage } from '../../components';
+import { AlertModal, Container, CustomText, Menu, ModalLink, StatusBarPage } from '../../components';
 import { ItemLink } from '../../utils/interface';
 
 export function Home() {
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
   const [data, setData] = useState<ItemLink>({} as ItemLink);
+  const [alertText, setAlertText] = useState('');
 
   function endLink() {
     Keyboard.dismiss();
@@ -44,12 +46,11 @@ export function Home() {
         });
       setData(response.data);
       setModalVisible(true);
-
       saveLink(response.data);
-
       endLink();
     } catch {
-      alert('Entre com um link válido!');
+      setAlertText('Entre com um link válido!');
+      setAlertVisible(true);
       endLink();
     }
   }
@@ -58,6 +59,11 @@ export function Home() {
     setModalVisible(false);
   }
 
+  function handleCloseAlert() {
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 2000);
+  }
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <ContainerGradient
@@ -150,6 +156,9 @@ export function Home() {
         </KeyboardAvoidingView>
         <Modal visible={modalVisible} transparent animationType="slide" >
           <ModalLink onClose={handleCloseModal} data={data}></ModalLink>
+        </Modal>
+        <Modal visible={alertVisible} transparent animationType="fade" onShow={handleCloseAlert} >
+          <AlertModal alertText={alertText} />
         </Modal>
       </ContainerGradient>
     </TouchableWithoutFeedback>

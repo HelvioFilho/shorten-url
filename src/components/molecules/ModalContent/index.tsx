@@ -1,5 +1,5 @@
-import React from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Modal, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import * as WebBrowser from 'expo-web-browser';
 import { Feather } from '@expo/vector-icons';
@@ -7,25 +7,26 @@ import { defaultTheme } from '../../../global/styles/theme';
 import { Container, CustomText } from '../../atoms';
 import { ContainerShort, LinkButton } from './styles';
 import { ModalProps } from '../../../utils/interface';
+import { AlertModal } from '../AlertModal';
 
 export function ModalContent({ data }: ModalProps) {
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertText, setAlertText] = useState('');
 
   function copyLink() {
     Clipboard.setString(data.link);
-    Alert.alert(
-      'Aviso',
-      'Link copiado com sucesso!',
-      [
-        {
-          text: 'ok',
-        }
-      ],
-      { cancelable: false }
-    );
+    setAlertText('Link copiado com sucesso!');
+    setAlertVisible(true);
   }
 
   async function handleOpenBrowser(link: string) {
     await WebBrowser.openBrowserAsync(link);
+  }
+
+  function handleCloseAlert() {
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 2000);
   }
 
   return (
@@ -86,6 +87,9 @@ export function ModalContent({ data }: ModalProps) {
           Abrir no Navegador
         </CustomText>
       </LinkButton>
+      <Modal visible={alertVisible} transparent animationType="fade" onShow={handleCloseAlert} >
+        <AlertModal alertText={alertText} />
+      </Modal>
     </Container>
   );
 }

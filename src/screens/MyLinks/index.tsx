@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import { Modal, ActivityIndicator, Platform } from 'react-native';
 import { FlatList, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useIsFocused } from '@react-navigation/native';
-
 import { Container, CustomText, ListItem, Menu, ModalLink, StatusBarPage } from '../../components';
 
 import { deleteLink, getLinksSave } from '../../utils/store';

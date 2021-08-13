@@ -3,11 +3,10 @@ import { View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-import { ActionContainer, ContainerLink } from './styles';
-import { ItemLink } from '../../../utils/store';
 import { defaultTheme } from '../../../global/styles/theme';
+import { ActionContainer, ContainerLink } from './styles';
 import { CustomText } from '../../atoms';
-
+import { ItemLink } from '../../../utils/interface';
 
 type Props = {
   data: ItemLink;

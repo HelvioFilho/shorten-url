@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { ContainerProps } from '../../../utils/interface';
 
 export const ContainerAll = styled.View<ContainerProps>`
+  display: flex;
   ${({ flex }) => flex && `flex: ${flex};`}
   ${({ theme, width }) => width && `width: ${theme.metrics.px(width)}px;`}
   ${({ widthPercent }) => widthPercent && `width: ${widthPercent}%;`}

@@ -53,3 +53,7 @@ export interface ModalProps {
   onClose?: () => void;
   data: ItemLink;
 }
+
+export interface AlertModalProps {
+  alertText: string;
+}

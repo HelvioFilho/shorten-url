@@ -6,6 +6,7 @@ export const colors = {
   background20: '#1DDBB9',
   background40: '#2CCBB9',
   input: 'rgba(255, 255, 255,0.15)',
+  modal: 'rgba(0, 0, 0, 0.75)',
   pale: '#A7A7A7',
   loading: '#121212',
   trash: '#FF5555',
