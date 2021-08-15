@@ -5,7 +5,8 @@
 <p align="center">
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#getting-started">Getting started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#project">Project</a>
+  <a href="#project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#application">Application</a>
 </p>
 
 <br>
@@ -45,3 +46,9 @@ $ expo start
 ## Project
 
 App developed to shorten url with the help of API Bitly.
+
+## Application
+
+Use the link below to try the app at the [expo](https://expo.io/)
+
+[![run in expo](https://img.shields.io/badge/Shorten%20Url-161616.svg?style=for-the-badge&logo=EXPO&labelColor=FFFFFF&logoColor=000)](https://expo.dev/@loihve/shortenUrl)
