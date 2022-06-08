@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "App developed to shorten url with the help of API Bitly.",
+    "githubUrl": "https://github.com/HelvioFilho/shorten-url"
   }
 }
